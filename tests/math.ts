@@ -5,11 +5,12 @@ import MathUI from '../src/mathui';
 import AutoMath from '../src/automath';
 import Widget from '@ckeditor/ckeditor5-widget/src/widget';
 import global from '@ckeditor/ckeditor5-utils/src/dom/global';
+import { expect } from 'chai';
 
 describe( 'Math', () => {
-	let editorElement, editor;
+	let editorElement: HTMLDivElement, editor: ClassicEditor;
 
-	beforeEach( () => {
+	beforeEach( async () => {
 		editorElement = global.document.createElement( 'div' );
 		global.document.body.appendChild( editorElement );
 

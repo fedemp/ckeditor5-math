@@ -1,6 +1,7 @@
 import { Math as MathDll, AutoformatMath as AutoformatMathDll } from '../src';
 import Math from '../src/math';
 import AutoformatMath from '../src/autoformatmath';
+import { expect } from 'chai';
 
 describe( 'CKEditor5 Math DLL', () => {
 	it( 'exports Math', () => {

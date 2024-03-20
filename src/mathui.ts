@@ -159,7 +159,10 @@ export default class MathUI extends Plugin {
 		this.formView.displayButtonView.isOn = mathCommand.display || false;
 	}
 
-	private _hideUI() {
+	/**
+	 * @private
+	 */
+	public _hideUI(): void {
 		if ( !this._isFormInPanel ) {
 			return;
 		}

@@ -7,11 +7,13 @@ import Undo from '@ckeditor/ckeditor5-undo/src/undo';
 import Typing from '@ckeditor/ckeditor5-typing/src/typing';
 import global from '@ckeditor/ckeditor5-utils/src/dom/global';
 import { getData, setData } from '@ckeditor/ckeditor5-engine/src/dev-utils/model';
+import { expect } from 'chai';
+import type { SinonFakeTimers } from 'sinon';
 
 describe( 'AutoMath - integration', () => {
-	let editorElement, editor;
+	let editorElement: HTMLDivElement, editor: ClassicEditor;
 
-	beforeEach( () => {
+	beforeEach( async () => {
 		editorElement = global.document.createElement( 'div' );
 		global.document.body.appendChild( editorElement );
 
@@ -52,7 +54,7 @@ describe( 'AutoMath - integration', () => {
 	} );
 
 	describe( 'use fake timers', () => {
-		let clock;
+		let clock: SinonFakeTimers;
 
 		beforeEach( () => {
 			clock = sinon.useFakeTimers();
@@ -169,17 +171,18 @@ describe( 'AutoMath - integration', () => {
 		} );
 	} );
 
-	function pasteHtml( editor, html ) {
+	function pasteHtml( editor: ClassicEditor, html: string ) {
 		editor.editing.view.document.fire( 'paste', {
 			dataTransfer: createDataTransfer( { 'text/html': html } ),
 			preventDefault() {
+				return undefined;
 			}
 		} );
 	}
 
-	function createDataTransfer( data ) {
+	function createDataTransfer( data: Record<string, string> ) {
 		return {
-			getData( type ) {
+			getData( type: string ) {
 				return data[ type ];
 			}
 		};
